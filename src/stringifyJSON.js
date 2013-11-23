@@ -15,7 +15,8 @@ var stringifyJSON = function (obj) {
 	var stringifyArray = function(arr){
 		var stringified = "[";
 		for(var index in arr){
-			stringified += stringifyUnknown(obj[index]);
+
+			stringified += stringifyUnknown(arr[index]);
 			if(index < arr.length -1){
 				stringified += ",";
 			}
@@ -23,10 +24,14 @@ var stringifyJSON = function (obj) {
 		stringified += "]";
 		return stringified;
 	};
-	var stringifyObject = function(obj){
+	var stringifyObject = function(object){
 		var stringified = "{";
-		for(var key in obj){
-			stringified += stringifyPrimitive(key) + ':' + stringifyUnknown(obj[key]);
+		var lastKey = Object.keys(object).pop();
+		for(var key in object){
+			stringified += stringifyPrimitive(key) + ':' + stringifyUnknown(object[key]);
+			if(key !== lastKey){
+				stringified += ',';
+			}
 		}
 		stringified += "}";
 		return stringified;
