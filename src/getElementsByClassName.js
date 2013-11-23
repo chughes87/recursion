@@ -17,5 +17,6 @@ var getElementsByClassName = function (className) {
 			innerFunction(elem.childNodes[index]);
 		}
 	}
+	innerFunction(document.body);
 	return results;
 };
