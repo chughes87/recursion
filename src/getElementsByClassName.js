@@ -5,5 +5,17 @@
 
 // But in stead we're going to implement it from scratch:
 var getElementsByClassName = function (className) {
-  // your code here
+	var results = [];
+	var innerFunction = function(elem) {
+		var index = 0;
+		for( index in elem.classList ){
+			if(elem.classList[index] == className){
+				results.push(elem);
+			}
+		}
+		for( index in elem.childNodes ){
+			innerFunction(elem.childNodes[index]);
+		}
+	}
+	return results;
 };
